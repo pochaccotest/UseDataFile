@@ -1,0 +1,2 @@
+﻿username,password,By Xpath,Verification text,screenshot
+Admin,admin123,//a[@href='/web/index.php/pim/viewMyDetails']//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'],My Info,TC05
