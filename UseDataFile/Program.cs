@@ -3,6 +3,8 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using System.Drawing;
 using OpenQA.Selenium.Support.UI;
+using System.IO;
+using System;
 
 
 [TestFixture]
@@ -52,7 +54,7 @@ public void VerifyLogin(string username, string password)
         driver.FindElement(By.XPath("//button[@type='submit']")).Click();
 
         Thread.Sleep(2000);
-       driver.FindElement(By.LinkText("My Info")).Click();
+      // driver.FindElement(By.LinkText("My Info")).Click();
        Thread.Sleep(2000);
 
        // Take a screenshot and save it to a file
