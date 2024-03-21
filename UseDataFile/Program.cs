@@ -4,6 +4,11 @@ using NUnit.Framework;
 using System.Drawing;
 using OpenQA.Selenium.Support.UI;
 
+//Thiếu namespace ở đầu mỗi class, cũng ko ảnh hưởng gì lắm
+//vd:
+
+namespace DemoProjectTest 
+{
 
 [TestFixture]
 public class LoginPageTest : IDisposable
@@ -93,4 +98,6 @@ public void VerifyLogin(string username, string password)
     {
         throw new NotImplementedException();
     }
+}
+
 }
