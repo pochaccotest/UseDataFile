@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using System.Drawing;
-using OpenQA.Selenium.Support.UI;
 using System.IO;
 using System;
 
@@ -40,16 +39,16 @@ public class LoginPageTest : IDisposable
 
                string username = values[0];
                string password = values[1];
-             //  string ConfirmXpath = values[2];
-             //  string ConfirmMsg = values[3];
+             string ConfirmXpath = values[2];
+             string ConfirmMsg = values[3];
 
                // Now use these credentials to login
-              VerifyLogin(username, password);
+              VerifyLogin(username, password, ConfirmXpath, ConfirmMsg);
            }
        }
    }
 
-public void VerifyLogin(string username, string password)
+public void VerifyLogin(string username, string password,string ConfirmXpath, string ConfirmMsg)
    {
        driver.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
@@ -59,38 +58,31 @@ public void VerifyLogin(string username, string password)
         driver.FindElement(By.XPath("//button[@type='submit']")).Click();
 
         Thread.Sleep(2000);
-      // driver.FindElement(By.LinkText("My Info")).Click();
-       Thread.Sleep(2000);
+            //   driver.FindElement(By.XPath(ConfirmXpath)).Text.Contains(ConfirmMsg);
+            // driver.FindElement(By.LinkText("My Info")).Text("my");
+            IWebElement element = driver.FindElement(By.LinkText("My Info"));
+       
+
+            Thread.Sleep(2000);
 
        // Take a screenshot and save it to a file
        Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
        screenshot.SaveAsFile(@"..\..\..\..\TestResult\LoginOK.jpg");
 
-       /*   
+            /*   
+            driver.FindElement(By.LinkText("My Info")).Click();
 
-       driver.FindElement(By.XPath("ConfirmXpath")).getText();
-       String BrMsg = text.getText();
-       Assert.assertEquals(ConfirmMsg, BrMsg);
-       /
-        Thread.Sleep(1000);
-       driver.FindElement(By.Name("username")).SendKeys("Admin");
-       driver.FindElement(By.Name("password")).SendKeys("admin123");
-       driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+            driver.FindElement(By.XPath(ConfirmXpath)).getText();
+            String BrMsg = text.getText();
+            Assert.assertEquals(ConfirmMsg, BrMsg);
+           
 
-       Thread.Sleep(2000);
-       driver.FindElement(By.LinkText("My Info")).Click();
-       Thread.Sleep(2000);
-
-       // Take a screenshot and save it to a file
-       Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-       screenshot.SaveAsFile(@"..\..\..\..\TestResult\LoginOK.jpg");
-
-       */
+            */
 
 
-}
+        }
 
-[TearDown]
+        [TearDown]
     public void TearDown()
     {
         driver.Quit();
